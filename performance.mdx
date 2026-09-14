@@ -5,6 +5,9 @@ sources:
   - "features/performance/ui/**"
   - "features/performance/modules/analytics/**"
   - "features/performance/model/analytics-widget.ts"
+  - "features/performance/store/use-performance-store.ts"
+  - "features/performance/assistant-capability/components/**"
+  - "features/performance/assistant-capability/authoring-prompt-fragment.ts"
   - "app/(main)/(routes)/performance/**"
 last-verified: "2026-09-14"
 ---
@@ -23,15 +26,17 @@ Open **Performance** and choose an agent. The page is a single board: every char
 
 ## Filter the calls
 
-The date range and filters in the header apply to every card in the active view. Available filters can include outcomes, topics, end reasons, call status, call type, sentiment, phone numbers, call duration, day of week, and time of day. For outbound campaigns you can also filter and break down by the campaign's outbound variables, and for inbound agents by each Webhook block's status and payload fields, alongside API block fields.
+The date range and filters in the header apply across the active view. The board's filter controls include call status, call type, and the Phonely phone number. Filters you set appear as chips in the header; remove a chip to clear that filter.
 
-You can also filter by a flow block: keep the calls that **Reached** a block, or those that **Never reached** it. Blocks are listed grouped by flow, and a search box matches a block by its name, flow, or action id. **Never reached** also keeps calls that ran no flow at all.
+For a question about particular outcomes, topics, end reasons, sentiments, or flow blocks, open the card in **Explore** and use **Only count calls where…** to set its own conditions. Save a filter when you want to reuse the same definition across cards. For example, define which calls count as a booked appointment, then use that definition on each relevant card.
 
-Filters you set appear as chips in the header. Remove a chip to clear that filter. Filter choices are limited to values available for the selected agent and date range.
+Older board-wide outcome, topic, end-reason, sentiment, caller-number, duration, and flow-block filters are no longer retained. Review older views before comparing their totals with earlier reports, and recreate supported conditions on the relevant cards.
 
 ## Read the cards
 
-**Add widget** opens a dialog with a guided chat and preset cards. Describe the card you want and Ask AI proposes one you can accept, or pick a preset directly. On an empty view, you can also ask Phonely to suggest a starting board built from the agent's own flow and outcomes. Preset cards cover common questions:
+**Add widget** opens a dialog with guided creation and preset cards. Before your first guided request, describe your business goal and north star metric—the main measure of success you want to track—then select **Save and continue**. Describe the card you want and review the proposal before adding it. Use **Change business goal and north star metric** in the dialog to revise those answers later.
+
+You can also pick a preset directly. On an empty view, you can ask Phonely to suggest a starting board built from the agent's own flow and outcomes. Preset cards cover common questions:
 
 | Card | What it shows |
 | --- | --- |
@@ -52,7 +57,9 @@ Each card shows when its data was last updated. Hover a number to see the count 
 
 ### Change how a card looks
 
-Open a card's **More options** menu to switch between chart types, such as **Time series**, **Big number**, **Metric bars**, **Top list**, **Table**, **Pie**, or **Sankey**. Types the card cannot draw are listed but greyed out with what to change to unlock them, such as removing an over-time breakdown to use **Pie**. **Metric bars** needs two or more metrics that share a unit.
+Open a card's **More options** menu to switch between **Time series**, **Bar chart**, **Big number**, **Metric bars**, **Top list**, **Table**, and **Pie**, where compatible. Unavailable types are greyed out with instructions for unlocking them. **Metric bars** requires no breakdown and at least two displayed metrics that share a unit.
+
+An existing **Sankey** card keeps its own chart type. You cannot convert an ordinary card to Sankey from this menu.
 
 Switching the type changes the presentation only. It never changes the number a card computes.
 
@@ -61,7 +68,7 @@ Switching the type changes the presentation only. It never changes the number a 
 - Drag a card to reorder it.
 - Drag a card's edge or corner to resize it.
 - Select **Edit in Explore** (the pencil) to change the question behind a card.
-- Use **More options** to duplicate a card, copy it to another view, export its data, or remove it from the view. Deleting a saved metric or filter asks first and names the row it would take.
+- Use **More options** to duplicate a card, copy it to another view, export its data, or remove it from the view.
 
 Layout changes belong to the active view. If a board cannot be saved, the header shows a **Not saved** warning; select it to retry.
 
@@ -69,7 +76,7 @@ You can also add a card from the board's own empty space: a **+** tile in the la
 
 ## Build your own card
 
-Select **Add widget** to add a preset or guided card, or **Build a query** to open **Explore**.
+Select **Add widget**, then **Build a widget manually** to open **Explore**.
 
 Explore replaces the board while you work in it. Build a question by choosing what to count, how to break it down, and which calls to include:
 
@@ -81,7 +88,17 @@ Explore replaces the board while you work in it. Build a question by choosing wh
 
 Save the result to add it to the board. Use the browser's Back button or the back arrow to leave Explore; if you have unsaved work, Phonely asks before discarding it.
 
-You can save a metric or filter to reuse it across cards, and manage those saved definitions from Explore.
+You can save a metric or filter to reuse it across cards, and manage those saved definitions from Explore. Deleting a saved definition asks for confirmation and identifies the metric or filter to be removed.
+
+## Edit Performance with Ask AI
+
+While **Performance** is open, use [Ask AI](/key-concepts/ask-ai) to add, edit, or remove cards; create, rename, duplicate, reorder, or delete views; or propose changes to saved metrics and filters. State the view and business question you want to change, such as "Add a card showing booked appointments over time."
+
+Review each proposal's preview, affected view, and definition before accepting it. Adding or editing a card offers **Add to board** or **Apply change**; other proposals show the action they will perform. Reject a proposal you do not want. Asking for a change does not apply it automatically.
+
+Use the proposal's **Undo** action when available to reverse an accepted change. You can also open a proposed card in Explore to refine it manually. If you accept an edit while that card is open in Explore, inspect the updated preview and save from Explore when it is ready.
+
+Changing a saved metric or filter can affect cards that use it. Ask AI cannot delete a saved definition while cards still reference it; update those cards first.
 
 ## Work with views
 
