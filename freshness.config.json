@@ -6,8 +6,8 @@
       "sourcePrefix": "",
       "rootEnv": "PHONELY_FRONTEND_ROOT",
       "accountedThrough": {
-        "label": "v0.263.0",
-        "commit": "9049f3664c7cc486f24272cf5552f2bb6d63d70b"
+        "label": "v0.265.0",
+        "commit": "0bcd826e482dca5c90aa4b6b5a30af1748cf9049"
       }
     },
     {
@@ -1156,6 +1156,150 @@
           "status": "not-public",
           "pages": [],
           "note": "v0.263 housekeeping with no public contract: removed unused code (agent-building overlay, quillforms voice-block, onboarding morphing-input, orgs agents-list-card, mcp-api-utils, an org usage-breakdown hook, and the retired performance flow-version-group component, which had no importers and does not remove the Call Paths flow-version filter), internal best-practice skill notes, and changelog entries. The api-reference/web-sdk candidate maps to changelog.MD only; the changelog changes are release notes for the features dispositioned above and do not change the Web SDK."
+        }
+      ]
+    },
+    {
+      "id": "phonely-frontend-v0.264.0-v0.265.0",
+      "repository": "phonely-frontend",
+      "issue": "PHO-9239",
+      "reviewedOn": "2026-09-14",
+      "fromExclusive": {
+        "label": "v0.263.0",
+        "commit": "9049f3664c7cc486f24272cf5552f2bb6d63d70b"
+      },
+      "throughInclusive": {
+        "label": "v0.265.0",
+        "commit": "0bcd826e482dca5c90aa4b6b5a30af1748cf9049"
+      },
+      "dispositions": [
+        {
+          "id": "performance-authoring",
+          "status": "docs-updated",
+          "pages": [
+            "performance",
+            "data-tables"
+          ],
+          "note": "PHO-9911/PHO-10168/PHO-10094/PHO-10169/PHO-10325/PHO-10172/PHO-10049/PHO-10265/PHO-10324/PHO-10533/PHO-10166 rebuild Performance authoring: Add widget is now a dialog with a guided Ask AI chat and presets, an empty view can propose a starting board from the agent's own flow and outcomes, a + tile in the board's empty space opens the same gallery, cards can be duplicated or copied to another view, deleting a saved metric/filter asks first, a new Metric bars chart type needs two or more metrics that share a unit, and incompatible chart types are listed greyed out with what to change to unlock them (Sankey not offered from the switcher). The v0.264.1/v0.264.2/v0.265.0 hotfixes fixed board captions, starting-board arming, legacy row caps, and catalog metric naming without changing the documented surface. Documented the guided Add widget dialog, starting board, empty-space + tile, duplicate/copy and delete-confirmation actions, and the Metric bars type and greyed-out incompatible types on Performance; the Breakdown by control and flow-block filter were already documented. The PHO-10166 block filter search box was documented in the prior window."
+        },
+        {
+          "id": "workflow-variable-navigation",
+          "status": "already-covered",
+          "pages": [
+            "flow-editor/variables"
+          ],
+          "note": "PHO-10050 upstream-variable go-to-block navigation and clearer variable errors, and PHO-10344 conditional compressed workflow content storage for large flows, were reviewed in the v0.262.0-v0.263.0 window (block-navigation-consolidation, variable-error-copy-and-tooltips) and are storage/plumbing internals otherwise. The Variables page already documents activating a valid variable chip to open its source block and resolving invalid variables; no new user-facing workflow fact changed in this window."
+        },
+        {
+          "id": "block-generation-ask-ai",
+          "status": "docs-updated",
+          "pages": [
+            "blocks/flow-blocks/talk",
+            "blocks/conversation-blocks/collect",
+            "blocks/data-and-automation-blocks/code"
+          ],
+          "note": "PHO-10422 routes Talk, Collect, and Code block AI generation through a focused Ask AI task and removes the retired per-block generation endpoints (app/api/generate-with-ai/talk|collect|code). The block panel now shows a collapsible Generate with AI strip (generate-with-ai-inline.tsx, use-start-focused-block-generation.ts) that starts a focused Ask AI task proposing changes to that block alone, reviewed and applied on the canvas; the instruction is transient and not saved onto the block, and generation is offered only on an editable draft, not in previews, comparisons, or to viewers. Rewrote the Generate with AI sections on Talk, Collect, and Code to describe the focused Ask AI flow, removed the retired Build Manually / persistent description-field wording, and repaired the stale app/api/generate-with-ai talk and collect route source mappings."
+        },
+        {
+          "id": "csv-uploads-ask-ai",
+          "status": "docs-updated",
+          "pages": [
+            "key-concepts/ask-ai"
+          ],
+          "note": "PHO-10474 enables CSV file uploads in Ask AI: CSV files are selectable in the attach-file picker and their contents are read and passed to Ask AI (attachment.ts ASK_AI_ENABLED_ATTACHMENT_KINDS includes csv). Documented CSV as a supported Ask AI attachment on the Ask AI page."
+        },
+        {
+          "id": "ask-ai-block-references",
+          "status": "already-covered",
+          "pages": [
+            "key-concepts/ask-ai"
+          ],
+          "note": "PHO-9958 inline block references, PHO-10399 the @-shortcut placeholder hint, and PHO-10517 aligning Ask AI Talk exit handles with the canvas connection IDs were reviewed in prior windows (ask-ai-inline-block-references, ask-ai-block-reference-placeholder). The Ask AI page already documents the @ block reference, its open-flow requirement, and keyboard selection; PHO-10517 is an internal compile-time connection-id fix with no user-facing fact."
+        },
+        {
+          "id": "voice-model-name",
+          "status": "already-covered",
+          "pages": [
+            "agent-design/voice/overview"
+          ],
+          "note": "PHO-10340 voice TTS model and name editing, the admin-only unlisted model id, Cartesia sonic-3.6 in the built-in list with sonic-3.5 as the default, and adding the same provider voice at two models were reviewed in the v0.262.0-v0.263.0 window (voice-model-and-name-editing). The in-window files only re-export the default-voices list; the Voice page already documents renaming and adding a provider voice at different models. No new user-facing fact changed."
+        },
+        {
+          "id": "analytics-tab-rename",
+          "status": "docs-updated",
+          "pages": [
+            "agent-design/overview",
+            "call-topics",
+            "call-sentiments",
+            "post-call-outcomes"
+          ],
+          "note": "PHO-10442 renames the agent settings Call Tagging tab to Analytics, and PHO-10279 shows existing Call Topics as a built-in multi-category item inside Analytics Fields while unconfigured agents use only Analytics Fields and create no new legacy topic configuration. Renamed Call Tagging to Analytics on Agent Setup, Call Topics, Call Sentiment, and Post-Call Outcomes, and documented that call topics now live as a built-in item within Analytics Fields for agents that already use them."
+        },
+        {
+          "id": "telephony-cost",
+          "status": "docs-updated",
+          "pages": [
+            "billing-and-usage/manage-agents-and-usage"
+          ],
+          "note": "PHO-10316 combines transfer minutes, inbound and outbound telephony minutes, and phone-number charges into one Telephony Cost group in the Usage & Cost Cost view, with per-metric rate, quantity, and subtotal details while the Usage view still reports AI and transfer minutes separately (usage-analytics.ts COST_GROUP_LABELS telephony: Telephony Cost). PHO-10449 also adds a Previous billing cycle range option. Documented the AI Minutes / Telephony Cost cost grouping and the previous-billing-cycle range on Usage and Cost."
+        },
+        {
+          "id": "billing-history",
+          "status": "already-covered",
+          "pages": [
+            "billing-and-usage/plans-and-billing-history"
+          ],
+          "note": "PHO-10296 hiding draft and voided invoices from customers was documented in the prior v0.253.0-v0.261.0 window (billing-history-invoice-visibility) and the Plans and Billing page already states draft and voided invoices are not shown. PHO-10312/PHO-10278 billing-ops and Stripe invoice-history enhancements are admin-only tooling, and PHO-10449 carried-over credit display is an enterprise Metronome contract detail behind the same Plan & Billing surface the docs already describe generically. No new self-serve customer fact changed."
+        },
+        {
+          "id": "campaign-viewer-readonly",
+          "status": "docs-updated",
+          "pages": [
+            "outboundcalling/createaoutboundcallingcampaign"
+          ],
+          "note": "PHO-10583 lets viewers and organization read-only members open Outbound Calls, browse campaigns and call flows, and view draft campaign details without creating, editing, deleting, or changing campaign status (use-can-manage-campaigns.ts gates on isReadOnly; agent-page-permissions). Documented the read-only campaign browsing access for viewers on the Outbound Campaigns page. The matching db-svc v0.181.0 permission fix is a deployment prerequisite, not a documented user fact."
+        },
+        {
+          "id": "ab-test-dbsvc",
+          "status": "already-covered",
+          "pages": [
+            "testing/ab-testing"
+          ],
+          "note": "PHO-8358 moves A/B test CRUD and lifecycle actions to db-svc endpoints (ab-test-case-service.ts apiFetch to /public/testing/ab-test-cases) and PHO-10406 scopes multi-select Select all to search results for the A/B successful-outcomes and ended-reason pickers. PHO-10406 was documented in the v0.262.0-v0.263.0 window (multi-select-search-select-all) and the A/B Testing page already covers it; the db-svc CRUD migration is an internal serving change with no user-facing A/B fact."
+        },
+        {
+          "id": "call-transcript-and-details",
+          "status": "already-covered",
+          "pages": [
+            "call-history-ai-analytics/call-history-ai-analytics"
+          ],
+          "note": "PHO-10336 shows the warm-transfer recording on the transfer action when the status action was dropped, PHO-10170 shows every block an assistant turn passed through, PHO-10407 collapses a multi-block transcript turn behind a +N more toggle, and PHO-10332 enriches the call-details deployment strip. The deployment strip and per-turn block fidelity were reviewed as no-doc-change in the v0.262.0-v0.263.0 window; the transcript and warm-transfer recording are display refinements to surfaces the Call History page already describes generically, so no user-facing fact changed."
+        },
+        {
+          "id": "call-paths-scoping",
+          "status": "already-covered",
+          "pages": [
+            "call-path"
+          ],
+          "note": "PHO-10362 scopes call-paths entries by node membership so A/B challenger calls contribute to block reached/ended counts. This was reviewed in the v0.262.0-v0.263.0 window (call-paths-canvas-fix); it restores the counting behavior the Call Paths page already describes and changed no user-facing fact."
+        },
+        {
+          "id": "deep-dive-admin",
+          "status": "not-public",
+          "pages": [],
+          "note": "PHO-9592 adds admin-only Deep Dive (features/deep-dive, app/(main)/(routes)/deep-dive, app/api/deep-dive), gated behind UserRole.ADMIN which redirects non-admins to /home. It is not available to ordinary product users, so no public page documents it. The in-window commits also remove Deep Dive cost estimates and pin the user scope, all within the admin-only surface."
+        },
+        {
+          "id": "ask-ai-internals",
+          "status": "not-public",
+          "pages": [],
+          "note": "PHO-9592 migrates frontend AI generation and Ask AI streaming to AI SDK v7, plus the assistant runtime, sessions, attachments processing, tool plumbing, Langfuse telemetry, and observability span filtering (features/assistant, app/api/assistant, features/chat, app/api/generate-with-ai internals, lib/langfuse, lib/tools, shared/observability). These are model, provider, and observability internals behind the Ask AI surfaces already documented; no user-facing or Ask AI-behavioral fact changed beyond the CSV upload dispositioned separately."
+        },
+        {
+          "id": "repo-internal-and-infra",
+          "status": "not-public",
+          "pages": [],
+          "note": "Housekeeping with no public contract: PHO-10307 firebase-admin pin and uuid overrides, dependency and lockfile upgrades, gardening dead-code removal, removed in-repo performance-consolidation program plans and sidebar docs, CI and Claude PR tooling, auth and request-context refactors, instrumentation, changelog and version-bump releases, and mainline mergebacks."
         }
       ]
     }

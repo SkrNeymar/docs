@@ -6,7 +6,7 @@ sources:
   - "features/performance/modules/analytics/**"
   - "features/performance/model/analytics-widget.ts"
   - "app/(main)/(routes)/performance/**"
-last-verified: "2026-08-31"
+last-verified: "2026-09-14"
 ---
 
 Performance turns an agent's call history into a board of cards that help you understand traffic, results, and recurring patterns.
@@ -31,7 +31,7 @@ Filters you set appear as chips in the header. Remove a chip to clear that filte
 
 ## Read the cards
 
-**Add widget** offers preset cards for common questions:
+**Add widget** opens a dialog with a guided chat and preset cards. Describe the card you want and Ask AI proposes one you can accept, or pick a preset directly. On an empty view, you can also ask Phonely to suggest a starting board built from the agent's own flow and outcomes. Preset cards cover common questions:
 
 | Card | What it shows |
 | --- | --- |
@@ -52,7 +52,7 @@ Each card shows when its data was last updated. Hover a number to see the count 
 
 ### Change how a card looks
 
-Open a card's **More options** menu to switch between compatible chart types, such as **Time series**, **Bar chart**, **Big number**, **Top list**, **Table**, **Pie**, or **Sankey**. Only the types that suit the card's question are offered — a pie cannot show a time grouping, for example.
+Open a card's **More options** menu to switch between chart types, such as **Time series**, **Big number**, **Metric bars**, **Top list**, **Table**, **Pie**, or **Sankey**. Types the card cannot draw are listed but greyed out with what to change to unlock them, such as removing an over-time breakdown to use **Pie**. **Metric bars** needs two or more metrics that share a unit.
 
 Switching the type changes the presentation only. It never changes the number a card computes.
 
@@ -61,13 +61,15 @@ Switching the type changes the presentation only. It never changes the number a 
 - Drag a card to reorder it.
 - Drag a card's edge or corner to resize it.
 - Select **Edit in Explore** (the pencil) to change the question behind a card.
-- Use **More options** to export the card's data or remove it from the view.
+- Use **More options** to duplicate a card, copy it to another view, export its data, or remove it from the view. Deleting a saved metric or filter asks first and names the row it would take.
 
 Layout changes belong to the active view. If a board cannot be saved, the header shows a **Not saved** warning; select it to retry.
 
+You can also add a card from the board's own empty space: a **+** tile in the last row's leftover columns opens the same **Add widget** dialog.
+
 ## Build your own card
 
-Select **Add widget** to add a preset card, or **Build a query** to open **Explore**.
+Select **Add widget** to add a preset or guided card, or **Build a query** to open **Explore**.
 
 Explore replaces the board while you work in it. Build a question by choosing what to count, how to break it down, and which calls to include:
 
